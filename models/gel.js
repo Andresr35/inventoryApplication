@@ -9,7 +9,7 @@ const gelSchema = new Schema({
 });
 
 gelSchema.virtual("url").get(function () {
-  return `/catalog/gel/${this._id}`;
+  return `/products/gel/${this._id}`;
 });
 
 module.exports = mongoose.model("Gel", gelSchema);

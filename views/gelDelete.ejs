@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Delete Gel</title>
+  </head>
+  <body>
+    <%- include('header');%>
+    <p>Are you sure that you want to delete this gel?</p>
+    <form method="POST" action="">
+      <input
+        type="hidden"
+        name="gelID"
+        required="true"
+        value="<%= gel._id %>"
+      />
+      <button type="submit">Delete Gel</button>
+    </form>
+  </body>
+</html>
