@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
 const gelController = require("../controllers/gelController");
+const watchController = require("../controllers/watchController");
 
 router.get("/", (req, res, next) => {
   res.render("index", { title: "Runner's Inventory" });
@@ -16,5 +18,9 @@ router.get("/gel/:id/update", gelController.gelUpdate);
 router.post("/gel/:id/delete", gelController.gelDeletePost);
 router.post("/gels/add", gelController.addGelPost);
 router.post("/gel/:id/update", gelController.gelUpdatePost);
+
+//----Watches------------------
+router.get("/watches", watchController.getWatchList);
+router.get("/watch/:id", watchController.getWatchDetails);
 
 module.exports = router;

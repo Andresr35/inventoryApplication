@@ -8,7 +8,7 @@ const WatchSchema = new Schema({
 });
 
 WatchSchema.virtual("url").get(function () {
-  return `/catalog/watch/${this._id}`;
+  return `/products/watch/${this._id}`;
 });
 
 module.exports = mongoose.model("Watch", WatchSchema);
