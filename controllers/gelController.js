@@ -44,7 +44,7 @@ exports.gelDeletePost = asyncHandler(async (req, res, next) => {
 });
 
 exports.addGel = asyncHandler(async (req, res, next) => {
-  res.render("addGel", {
+  res.render("gelAdd", {
     title: "Add Gel",
   });
 });

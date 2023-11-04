@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 router.get("/gels", gelController.gelsList);
 router.get("/gel/:id", gelController.gelDetail);
 router.get("/gel/:id/delete", gelController.gelDelete);
-router.get("/gels/add", gelController.gelDetail);
+router.get("/gels/add", gelController.addGel);
 
 router.post("/gel/:id/delete", gelController.gelDeletePost);
 
