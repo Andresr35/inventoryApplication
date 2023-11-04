@@ -18,3 +18,17 @@ exports.getWatchDetails = asyncHandler(async (req, res, next) => {
     watch: watch,
   });
 });
+
+exports.getWatchDelete = asyncHandler(async (req, res, next) => {
+  const watch = await Watch.findById(req.params.id).exec();
+  if (watch === null) {
+    const err = new Error("Watch doesn't exist");
+    err.status = 404;
+    return next(err);
+  } else {
+    res.render("watchDelete", {
+      title: "Delete Watch",
+      watch: watch,
+    });
+  }
+});
