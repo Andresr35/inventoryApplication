@@ -43,6 +43,54 @@ exports.gelDeletePost = asyncHandler(async (req, res, next) => {
   res.redirect("/products/gels");
 });
 
+exports.gelUpdate = asyncHandler(async (req, res, next) => {
+  const gel = await Gel.findById(req.params.id);
+
+  res.render("gelAdd", {
+    title: "Update Gel",
+    gel: gel,
+  });
+});
+
+exports.gelUpdatePost = [
+  body("brand", "Gels should have a brand")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Gel should have a price").escape(),
+  body("caffeineAmount", "Enter the amount of caffeine this gel has").escape(),
+  body("flavor", "Enter the flavor of this gel")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const gel = new Gel({
+      brand: req.body.brand,
+      price: req.body.price,
+      caffeineAmount: req.body.caffeineAmount,
+      flavor: req.body.flavor,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render("gelAdd", {
+        title: "Update Gel",
+        gel: gel,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      const updatedGel = await Gel.findOneAndUpdate(
+        { _id: req.params.id },
+        gel,
+        {}
+      );
+      res.redirect(updatedGel.url);
+    }
+  }),
+];
+
 exports.addGel = asyncHandler(async (req, res, next) => {
   res.render("gelAdd", {
     title: "Add Gel",
