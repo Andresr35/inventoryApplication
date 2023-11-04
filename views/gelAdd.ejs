@@ -1,1 +1,45 @@
-
+<%- include('header');%>
+<form action="" method="post">
+  <label for="brand"
+    >Brand:
+    <input
+      type="text"
+      placeholder="Gel Brand"
+      name="brand"
+      required
+      value="<%= locals.gel ? gel.brand : ''%>"
+    />
+  </label>
+  <label for="price"
+    >Price:
+    <input
+      type="text"
+      placeholder="Price"
+      name="price"
+      value="<%= locals.gel ? gel.price: ''%>"
+      required
+    />
+  </label>
+  <label for="caffeineAmount"
+    >Amount of Caffeine(mg):
+    <input
+      type="text"
+      placeholder="0"
+      name="caffeineAmount"
+      value="<%= locals.gel ? gel.price: 0 %>"
+      required
+    />
+  </label>
+  <label for="flavor"
+    >Flavor:
+    <input
+      type="text"
+      placeholder="Flavor"
+      name="flavor"
+      value="<%= locals.gel ? gel.flavor : '' %>"
+      required
+    />
+  </label>
+  <button type="submit">Add Gel</button>
+</form>
+<%- include('footer');%>

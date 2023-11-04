@@ -6,6 +6,9 @@ body {
 a {
   color: #00b7ff;
 }
+nav {
+  display: inline;
+}
 ul {
   list-style-type: none;
   float: right;
@@ -15,6 +18,16 @@ ul {
 li {
   display: flex;
 }
-h1 {
+header {
+  padding: 10px;
+}
+header h1 {
   display: inline;
+}
+label {
+  display: block;
+  padding: 5px 0;
+}
+label input {
+  display: block;
 }

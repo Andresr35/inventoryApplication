@@ -48,3 +48,36 @@ exports.addGel = asyncHandler(async (req, res, next) => {
     title: "Add Gel",
   });
 });
+
+exports.addGelPost = [
+  body("brand", "Gels should have a brand")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Gel should have a price").escape(),
+  body("caffeineAmount", "Enter the amount of caffeine this gel has").escape(),
+  body("flavor", "Enter the flavor of this gel")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const gel = new Gel({
+      brand: req.body.brand,
+      price: req.body.price,
+      caffeineAmount: req.body.caffeineAmount,
+      flavor: req.body.flavor,
+    });
+    if (!errors.isEmpty()) {
+      res.render("gelAdd", {
+        title: "Add Gel",
+        gel: gel,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      await gel.save();
+      res.redirect(gel.url);
+    }
+  }),
+];

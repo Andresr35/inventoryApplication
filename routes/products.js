@@ -12,5 +12,6 @@ router.get("/gel/:id/delete", gelController.gelDelete);
 router.get("/gels/add", gelController.addGel);
 
 router.post("/gel/:id/delete", gelController.gelDeletePost);
+router.post("/gels/add", gelController.addGelPost);
 
 module.exports = router;
