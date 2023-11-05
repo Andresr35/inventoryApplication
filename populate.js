@@ -11,7 +11,7 @@ async function main() {
   console.log("Debug: About to connect");
   await mongoose.connect(process.env.MONDODB_KEY);
   console.log("Debug: Should be connected?");
-  await createWatches();
+  await createShoeInstances();
   console.log("Debug: Closing mongoose");
   mongoose.connection.close();
 }

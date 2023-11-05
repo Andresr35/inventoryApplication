@@ -3,6 +3,7 @@ const router = express.Router();
 
 const gelController = require("../controllers/gelController");
 const watchController = require("../controllers/watchController");
+const shoeInstanceController = require("../controllers/shoeInstanceController");
 
 router.get("/", (req, res, next) => {
   res.render("index", { title: "Runner's Inventory" });
@@ -30,4 +31,6 @@ router.post("/watch/:id/delete", watchController.postWatchDelete);
 router.post("/watch/:id/update", watchController.postWatchUpdate);
 router.post("/watch/add", watchController.postWatchAdd);
 
+//----Shoe Instances------------------
+router.get("/shoeInstances", shoeInstanceController.getShoeInstanceList);
 module.exports = router;
