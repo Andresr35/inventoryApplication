@@ -1,0 +1,45 @@
+<%- include('header');%>
+<form action="" method="post">
+  <label for="brand"
+    >Brand:
+    <input
+      type="text"
+      placeholder="Watch Brand"
+      name="brand"
+      required
+      value="<%= locals.watch ? watch.brand : ''%>"
+    />
+  </label>
+  <label for="model"
+    >Model:
+    <input
+      type="text"
+      placeholder="Model"
+      name="model"
+      value="<%= locals.watch ? watch.model: ''%>"
+      required
+    />
+  </label>
+  <label for="price"
+    >Price:
+    <input
+      type="text"
+      placeholder="Price"
+      name="price"
+      value="<%= locals.watch ? watch.price: ''%>"
+      required
+    />
+  </label>
+  <label for="description"
+    >Description:
+    <input
+      type="text"
+      placeholder="Description"
+      name="description"
+      value="<%= locals.watch ? watch.description : '' %>"
+      required
+    />
+  </label>
+  <button type="submit">Add Watch</button>
+</form>
+<%- include('footer');%>

@@ -40,6 +40,6 @@ async function createWatches() {
     description: "A high end smart watch",
   });
   await watch.save();
-  await appleWatch.save();
+  // await appleWatch.save();
   console.log("Watches saved");
 }

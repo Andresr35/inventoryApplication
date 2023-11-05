@@ -32,3 +32,102 @@ exports.getWatchDelete = asyncHandler(async (req, res, next) => {
     });
   }
 });
+
+exports.getWatchAdd = asyncHandler(async (req, res, next) => {
+  res.render("watchAdd", {
+    title: "Add Watch",
+  });
+});
+
+exports.getWatchUpdate = asyncHandler(async (req, res, next) => {
+  const watch = await Watch.findById(req.params.id);
+
+  res.render("watchAdd", {
+    title: "Update Watch",
+    watch: watch,
+  });
+});
+
+exports.postWatchDelete = asyncHandler(async (req, res, next) => {
+  const watch = await Watch.findById(req.params.id);
+
+  await Watch.deleteOne(watch._id);
+  res.redirect("/products/watches");
+});
+
+exports.postWatchAdd = [
+  body("brand", "Watch should have a brand")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Watch should have a price").escape(),
+  body("model", "Enter the model of the watch")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("description", "Enter a description of the watch")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const watch = new Watch({
+      brand: req.body.brand,
+      price: req.body.price,
+      model: req.body.model,
+      description: req.body.description,
+    });
+    if (!errors.isEmpty()) {
+      res.render("watchAdd", {
+        title: "Add Watch",
+        watch: watch,
+        errors: errors.array(),
+      });
+    } else {
+      await watch.save();
+      res.redirect(watch.url);
+    }
+  }),
+];
+
+exports.postWatchUpdate = [
+  body("brand", "Watch should have a brand")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Watch should have a price").escape(),
+  body("model", "Enter the model of the watch")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("description", "Enter a description of the watch")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const watch = new Watch({
+      brand: req.body.brand,
+      price: req.body.price,
+      model: req.body.model,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render("watchAdd", {
+        title: "Add Watch",
+        watch: watch,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      const updatedWatch = await Watch.findOneAndUpdate(
+        { _id: req.params.id },
+        watch,
+        {}
+      );
+
+      res.redirect(updatedWatch.url);
+    }
+  }),
+];

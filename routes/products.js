@@ -21,6 +21,13 @@ router.post("/gel/:id/update", gelController.gelUpdatePost);
 
 //----Watches------------------
 router.get("/watches", watchController.getWatchList);
+router.get("/watch/add", watchController.getWatchAdd);
 router.get("/watch/:id", watchController.getWatchDetails);
+router.get("/watch/:id/delete", watchController.getWatchDelete);
+router.get("/watch/:id/update", watchController.getWatchUpdate);
+
+router.post("/watch/:id/delete", watchController.postWatchDelete);
+router.post("/watch/:id/update", watchController.postWatchUpdate);
+router.post("/watch/add", watchController.postWatchAdd);
 
 module.exports = router;
