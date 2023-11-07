@@ -1,4 +1,5 @@
 const ShoeInstance = require("../models/shoeInstance");
+const Shoe = require("../models/shoe");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
@@ -21,8 +22,18 @@ exports.getShoeInstanceDetails = asyncHandler(async (req, res, next) => {
 });
 
 exports.getShoeInstanceAdd = asyncHandler(async (req, res, next) => {
+  const shoes = await Shoe.find({});
   res.render("shoeInstanceAdd", {
     title: "Add Shoe Instance",
+    shoes: shoes,
+  });
+});
+
+exports.getShoeInstanceDelete = asyncHandler(async (req, res, next) => {
+  const shoeInstance = await ShoeInstance.find({}).populate("shoe").exec();
+  res.render("shoeInstanceDelete", {
+    title: "Delete Shoe Instance",
+    shoeInstance: shoeInstance,
   });
 });
 
@@ -31,5 +42,25 @@ exports.postShoeInstanceAdd = [
   body("stockNumber", "Should have stock number").escape(),
   body("status", "What is the status of this shoe").escape(),
   body("size", "What size is this shoe").escape(),
-  asyncHandler(async (req, res, next) => {}),
+  asyncHandler(async (req, res, next) => {
+    const shoes = await Shoe.find({});
+    const errors = validationResult(req);
+    const shoeInstance = new ShoeInstance({
+      shoe: req.body.shoe,
+      stockNumber: req.body.stockNumber,
+      status: req.body.status,
+      size: req.body.size,
+    });
+    if (!errors.isEmpty()) {
+      res.render("shoeInstanceAdd", {
+        title: "Add Shoe Instance",
+        shoeInstance: shoeInstance,
+        shoes: shoes,
+        errors: errors.array(),
+      });
+    } else {
+      await shoeInstance.save();
+      res.redirect(shoeInstance.url);
+    }
+  }),
 ];

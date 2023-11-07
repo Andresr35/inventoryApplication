@@ -33,4 +33,6 @@ router.post("/watch/add", watchController.postWatchAdd);
 
 //----Shoe Instances------------------
 router.get("/shoeInstances", shoeInstanceController.getShoeInstanceList);
+router.get("/shoeInstance/add", shoeInstanceController.getShoeInstanceAdd);
+
 module.exports = router;

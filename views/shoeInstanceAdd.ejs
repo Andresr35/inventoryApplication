@@ -1,0 +1,41 @@
+<%- include('header');%>
+<form action="" method="post">
+  <label for="shoe"
+    >Shoe:
+    <select name="shoe" type="select" placeholder="Select Shoe" required>
+      <% shoes.forEach(function(shoe){ %>
+      <option value="<%=shoe._id %>"><%= shoe.name%></option>
+      <% }); %>
+    </select>
+  </label>
+  <label for="stockNumber"
+    >Stock Number:
+    <input
+      type="text"
+      placeholder="Shoe Instance Stock Number"
+      name="stockNumber"
+      required
+      value="<%= locals.shoeInstance ? shoeInstance.stockNumber : ''%>"
+    />
+  </label>
+  <label for="status"
+    >Status:
+    <select name="status">
+      <option value="Used">Used</option>
+      <option value="New">New</option>
+    </select>
+  </label>
+  <label for="size"
+    >Size:
+    <input
+      type="text"
+      placeholder="Size"
+      name="size"
+      value="<%= locals.shoeInstance ? shoeInstance.size: ''%>"
+      required
+    />
+  </label>
+
+  <button type="submit">Add Shoe Instance</button>
+</form>
+<%- include('footer');%>
