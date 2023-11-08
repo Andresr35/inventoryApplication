@@ -1,0 +1,6 @@
+<%- include('header');%> <% shoes.forEach(function(shoe){ %>
+<a href="<%= shoe.url%>"><%= shoe.name %></a>
+<% }); %>
+<hr />
+<a href="/products/shoes/add">Add Shoe</a>
+<%- include('footer');%>

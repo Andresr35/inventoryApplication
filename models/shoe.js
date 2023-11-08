@@ -19,7 +19,7 @@ const ShoeSchema = new Schema({
 });
 
 ShoeSchema.virtual("url").get(function () {
-  return `/catalog/shoe/${this._id}`;
+  return `/products/shoe/${this._id}`;
 });
 
 module.exports = mongoose.model("Shoe", ShoeSchema);

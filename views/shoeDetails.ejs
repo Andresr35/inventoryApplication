@@ -1,0 +1,8 @@
+<%- include('header');%>
+<h2><%= shoe.name %></h2>
+<p>Price: <%= shoe.price %></p>
+<p>Gender: <%= shoe.gender %></p>
+<p>Category: <%= shoe.category %></p>
+<a href="<%= shoe.url %>/delete">Delete Shoe</a>
+<a href="<%= shoe.url %>/update">Update Shoe</a>
+<%- include('footer');%>

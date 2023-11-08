@@ -1,0 +1,8 @@
+<%- include('header');%>
+<h3><%= shoe.name %></h3>
+<p>Are you sure you want to delete this shoe?</p>
+<form method="POST" action="">
+  <input type="hidden" name="shoeID" required="true" value="<%= shoe._id %>" />
+  <button type="submit">Delete Shoe</button>
+</form>
+<%- include('footer');%>

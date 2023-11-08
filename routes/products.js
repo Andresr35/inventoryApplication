@@ -3,6 +3,7 @@ const router = express.Router();
 
 const gelController = require("../controllers/gelController");
 const watchController = require("../controllers/watchController");
+const shoeController = require("../controllers/shoeController");
 const shoeInstanceController = require("../controllers/shoeInstanceController");
 
 router.get("/", (req, res, next) => {
@@ -34,5 +35,14 @@ router.post("/watch/add", watchController.postWatchAdd);
 //----Shoe Instances------------------
 router.get("/shoeInstances", shoeInstanceController.getShoeInstanceList);
 router.get("/shoeInstance/add", shoeInstanceController.getShoeInstanceAdd);
+
+//----Shoe Instances------------------
+router.get("/shoes", shoeController.getShoeList);
+router.get("/shoe/:id", shoeController.getShoeDetails);
+router.get("/shoe/:id/delete", shoeController.getShoeDelete);
+router.get("/shoes/add", shoeController.getShoeAdd);
+
+router.post("/shoes/add", shoeController.postShoeAdd);
+router.post("/shoe/:id/delete", shoeController.postShoeDelete);
 
 module.exports = router;

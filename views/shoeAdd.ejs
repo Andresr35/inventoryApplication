@@ -1,0 +1,43 @@
+<%- include('header');%>
+<form action="" method="post">
+  <label for="name"
+    >Name:
+    <input
+      type="text"
+      placeholder="Shoe Name"
+      name="name"
+      required
+      value="<%= locals.shoe ? shoe.name : ''%>"
+    />
+  </label>
+  <label for="gender"
+    >Gender:
+    <select name="gender" placeholder="Select Shoe">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Unisex">Unisex</option>
+    </select>
+  </label>
+  <label for="price"
+    >Price:
+    <input
+      type="number"
+      placeholder="Price"
+      name="price"
+      value="<%= locals.shoe ? shoe.price: 0%>"
+      required
+    />
+  </label>
+  <label for="category"
+    >Category:
+    <select name="category" placeholder="Select Category">
+      <option value="Trail Runner">Trail Runner</option>
+      <option value="Long Distance">Long Distance</option>
+      <option value="Walking">Walking</option>
+      <option value="Speed">Speed</option>
+      <option value="Lifestyle">Lifestyle</option>
+    </select>
+  </label>
+  <button type="submit">Add Shoe</button>
+</form>
+<%- include('footer');%>
