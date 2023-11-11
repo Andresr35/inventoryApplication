@@ -1,6 +1,7 @@
 <%- include('header');%> <% shoeInstances.forEach(function(shoeInstance){ %>
-<a href="<%= shoeInstance.url%>"><%= shoeInstance.shoe.brand %></a>
+<p>Stock Number:<%= shoeInstance.stockNumber %></p>
+<a href="<%= shoeInstance.url%>"><%= shoeInstance.shoe.name %></a>
 <% }); %>
 <hr />
-<a href="/products/shoeInstance/add">Add Shoe Instances</a>
+<a href="/products/shoeInstances/add">Add Shoe Instances</a>
 <%- include('footer');%>

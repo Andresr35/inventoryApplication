@@ -34,15 +34,36 @@ router.post("/watch/add", watchController.postWatchAdd);
 
 //----Shoe Instances------------------
 router.get("/shoeInstances", shoeInstanceController.getShoeInstanceList);
-router.get("/shoeInstance/add", shoeInstanceController.getShoeInstanceAdd);
+router.get("/shoeInstance/:id", shoeInstanceController.getShoeInstanceDetails);
+router.get(
+  "/shoeInstance/:id/delete",
+  shoeInstanceController.getShoeInstanceDelete
+);
+router.get(
+  "/shoeInstance/:id/update",
+  shoeInstanceController.getShoeInstanceUpdate
+);
+router.get("/shoeInstances/add", shoeInstanceController.getShoeInstanceAdd);
 
-//----Shoe Instances------------------
+router.post("/shoeInstances/add", shoeInstanceController.postShoeInstanceAdd);
+router.post(
+  "/shoeInstance/:id/delete",
+  shoeInstanceController.postShoeInstanceDelete
+);
+router.post(
+  "/shoeInstance/:id/update",
+  shoeInstanceController.postShoeInstanceUpdate
+);
+
+//----Shoes------------------
 router.get("/shoes", shoeController.getShoeList);
 router.get("/shoe/:id", shoeController.getShoeDetails);
 router.get("/shoe/:id/delete", shoeController.getShoeDelete);
 router.get("/shoes/add", shoeController.getShoeAdd);
+router.get("/shoe/:id/update", shoeController.getShoeUpdate);
 
 router.post("/shoes/add", shoeController.postShoeAdd);
+router.post("/shoe/:id/update", shoeController.postShoeUpdate);
 router.post("/shoe/:id/delete", shoeController.postShoeDelete);
 
 module.exports = router;

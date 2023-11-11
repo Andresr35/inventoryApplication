@@ -1,0 +1,14 @@
+<%- include('header');%>
+<h2><%= shoeInstance.shoe.name %></h2>
+<p>Price: <%= shoeInstance.shoe.price %></p>
+<p>Gender: <%= shoeInstance.shoe.gender %></p>
+<p>Category: <%= shoeInstance.shoe.category %></p>
+<hr />
+<p><%=shoeInstance.stockNumber%></p>
+<p><%=shoeInstance.status%></p>
+<p><%=shoeInstance.size%></p>
+<hr />
+
+<a href="<%= shoeInstance.url %>/delete">Delete Shoe</a>
+<a href="<%= shoeInstance.url %>/update">Update Shoe</a>
+<%- include('footer');%>

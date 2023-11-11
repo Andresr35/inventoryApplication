@@ -30,6 +30,14 @@ exports.getShoeAdd = asyncHandler(async (req, res, next) => {
   });
 });
 
+exports.getShoeUpdate = asyncHandler(async (req, res, next) => {
+  const shoe = await Shoe.findById(req.params.id).exec();
+  res.render("shoeAdd", {
+    title: "Update Shoe",
+    shoe: shoe,
+  });
+});
+
 exports.getShoeDelete = asyncHandler(async (req, res, next) => {
   const shoe = await Shoe.findById(req.params.id).exec();
 
@@ -57,6 +65,44 @@ exports.postShoeDelete = asyncHandler(async (req, res, next) => {
     res.redirect("/products/shoes");
   }
 });
+
+exports.postShoeUpdate = [
+  body("name", "What shoe is this").trim().isLength({ min: 1 }).escape(),
+  body("gender", "What gender is this for?")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("category", "What type of shoe is this")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "What price is this shoe").escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const shoe = new Shoe({
+      name: req.body.name,
+      gender: req.body.gender,
+      category: req.body.category,
+      price: req.body.price,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render("shoeAdd", {
+        title: "Update Shoe",
+        shoe: shoe,
+        errors: errors,
+      });
+      return;
+    } else {
+      const updatedShoe = await Shoe.findOneAndUpdate(
+        { _id: req.params.id },
+        shoe,
+        {}
+      );
+      res.redirect(updatedShoe.url);
+    }
+  }),
+];
 
 exports.postShoeAdd = [
   body("name", "What shoe is this").trim().isLength({ min: 1 }).escape(),

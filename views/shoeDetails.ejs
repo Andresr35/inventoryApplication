@@ -3,6 +3,15 @@
 <p>Price: <%= shoe.price %></p>
 <p>Gender: <%= shoe.gender %></p>
 <p>Category: <%= shoe.category %></p>
+<% shoeInstances.forEach(function(shoeInstance){ %>
+<hr />
+<p><%=shoeInstance.stockNumber%></p>
+<p><%=shoeInstance.status%></p>
+<p><%=shoeInstance.size%></p>
+<hr />
+
+<% }); %>
+
 <a href="<%= shoe.url %>/delete">Delete Shoe</a>
 <a href="<%= shoe.url %>/update">Update Shoe</a>
 <%- include('footer');%>
